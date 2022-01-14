@@ -140,7 +140,7 @@ p1_ridge <- ridge_grid %>%
   scale_x_log10() +
   theme_minimal() +
   theme(legend.position = "none") +
-  labs(x = "Penalidade", y = "Média"); p1_ridge
+  labs(x = expression(lambda), y = "Média"); p1_ridge
 
 p1_ridge %>% ggsave(filename = "img/trafego_r2_rmse_ridge.png", dpi = "retina", width = 7, height = 5)
 
@@ -167,6 +167,8 @@ p2_ridge <- final_ridge %>%
 
 p2_ridge %>% ggsave(filename = "img/trafego_importancia_ridge.png", dpi = "retina", width = 7, height = 3)
 
+# Ajusta o melhor modelo final ao conjunto de treinamento e avalia o conjunto de teste
+# https://tune.tidymodels.org/reference/last_fit.html
 ridge <- last_fit(
   final_ridge,
   dat_split
@@ -223,7 +225,7 @@ p1_lasso <- lasso_grid %>%
   scale_x_log10() +
   theme_minimal() +
   theme(legend.position = "none") +
-  labs(x = "Penalidade", y = "Média"); p1_lasso
+  labs(x = expression(lambda), y = "Média"); p1_lasso
 
 p1_lasso %>% ggsave(filename = "img/trafego_r2_rmse_lasso.png", dpi = "retina", width = 7, height = 5)
 
@@ -250,6 +252,8 @@ p2_lasso <- final_lasso %>%
 
 p2_lasso %>% ggsave(filename = "img/trafego_importancia_lasso.png", dpi = "retina", width = 7, height = 3)
 
+# Ajusta o melhor modelo final ao conjunto de treinamento e avalia o conjunto de teste
+# https://tune.tidymodels.org/reference/last_fit.html
 lasso <- last_fit(
   final_lasso,
   dat_split

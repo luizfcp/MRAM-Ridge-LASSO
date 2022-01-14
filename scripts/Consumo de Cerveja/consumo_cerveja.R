@@ -125,7 +125,7 @@ p1_cc_ridge <- ridge_grid %>%
   scale_x_log10() +
   theme_minimal() +
   theme(legend.position = "none") +
-  labs(x = "Penalidade", y = "Média", title = "Ridge"); p1_cc_ridge
+  labs(x = expression(lambda), y = "Média", title = "Ridge"); p1_cc_ridge
 
 lowest_rmse <- ridge_grid %>% select_best("rmse", maximize = FALSE)
 
@@ -167,7 +167,7 @@ p1_cc_lasso <- lasso_grid %>%
   scale_x_log10() +
   theme_minimal() +
   theme(legend.position = "none") +
-  labs(x = "Penalidade", y = "Média", title = "LASSO"); p1_cc_lasso
+  labs(x = expression(lambda), y = "Média", title = "LASSO"); p1_cc_lasso
 
 lowest_rmse <- lasso_grid %>% select_best("rmse", maximize = FALSE)
 final_lasso <- finalize_workflow(wf %>% add_model(tune_spec), lowest_rmse)
