@@ -26,8 +26,8 @@
 │       └─ data                   # base de dados para a análise
 │       └─ img                    # Imagens referente a análise
 │       └─ urban_traffic_sp.R     # Script com a análise
-├─ README.md                      # Este arquivo.
-└─ TCC.RProject                   # Arquivo para abrir projeto no RStudio
+├─ MRAM.RProject                 # Arquivo para abrir projeto no RStudio
+└─ README.md                      # Este arquivo.
 ```
 ---
 
