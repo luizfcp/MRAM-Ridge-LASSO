@@ -9,7 +9,7 @@
 ```
 .
 ├─ man/
-    └─ figures                    # Figuras para descrição do repositório
+│   └─ figures                    # Figuras para descrição do repositório
 ├─ scripts/                       # Pasta
 │   └─ Coffe Ratings/
 │   │   └─ img                    # Imagens referente a análise
