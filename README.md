@@ -9,25 +9,25 @@
 ```
 .
 ├─ man/
- └─ figures   					      # Figuras para descrição do repositório
-├─ scripts/       					  # Pasta
-│ └─ Coffe Ratings/
-│ │ └─ img						        # Imagens referente a análise
-│ │ └─ coffe_ratings.R  		  # Script com a análise
-│ └─ Consumo de Cerveja/
-│ │ └─ data						        # base de dados para a análise
-│ │ └─ img						        # Imagens referente a análise
-│ │ └─ consumo_cerveja.R  		# Script com a análise
-│ └─ Student Performance/
-│ │ └─ data						        # base de dados para a análise
-│ │ └─ img						        # Imagens referente a análise
-│ │ └─ student_performance.R	# Script com a análise
-│ └─ Urban Traffic SP/
-│   └─ data						        # base de dados para a análise
-│   └─ img						        # Imagens referente a análise
-│   └─ urban_traffic_sp.R  		# Script com a análise
-├─ README.md     					    # Este arquivo.
-└─ TCC.RProject  					    # Arquivo para abrir projeto no RStudio
+    └─ figures                    # Figuras para descrição do repositório
+├─ scripts/                       # Pasta
+│   └─ Coffe Ratings/
+│   │   └─ img                    # Imagens referente a análise
+│   │   └─ coffe_ratings.R        # Script com a análise
+│   └─ Consumo de Cerveja/
+│   │   └─ data                   # base de dados para a análise
+│   │   └─ img                    # Imagens referente a análise
+│   │   └─ consumo_cerveja.R      # Script com a análise
+│   └─ Student Performance/
+│   │   └─ data                   # base de dados para a análise
+│   │   └─ img                    # Imagens referente a análise
+│   │   └─ student_performance.R  # Script com a análise
+│   └─ Urban Traffic SP/
+│       └─ data                   # base de dados para a análise
+│       └─ img                    # Imagens referente a análise
+│       └─ urban_traffic_sp.R     # Script com a análise
+├─ README.md                      # Este arquivo.
+└─ TCC.RProject                   # Arquivo para abrir projeto no RStudio
 ```
 ---
 
