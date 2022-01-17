@@ -1,9 +1,34 @@
 # Universidade Federal Fluminense - UFF <img src="man/figures/UFF_brasao.png" align="right" />
 
-**Curso: Bacharel em Estatística**
 ---
 
 ## Métodos de Regularização no Aprendizado de Máquinas: Ridge e LASSO
+---
+
+#### Estrutura do repositório:
+.
+|
+|- man
+	|- figures   					# Figuras para descrição do repositório
+|- scripts       					# Pasta
+	|- Coffe Ratings
+		|- img						# Imagens referente a análise
+		|- coffe_ratings.R  		# Script com a análise
+	|- Consumo de Cerveja
+		|- data						# base de dados para a análise
+		|- img						# Imagens referente a análise
+		|- consumo_cerveja.R  		# Script com a análise
+	|- Student Performance
+		|- data						# base de dados para a análise
+		|- img						# Imagens referente a análise
+		|- student_performance.R	# Script com a análise
+	|- Urban Traffic SP
+		|- data						# base de dados para a análise
+		|- img						# Imagens referente a análise
+		|- urban_traffic_sp.R  		# Script com a análise
+|- README.md     					# Este arquivo.
+|- TCC.RProject  					# Arquivo para abrir projeto no RStudio
+
 ---
 
 _Na adversidade, uns desistem, enquanto outros batem recordes._ — Ayrton Senna
