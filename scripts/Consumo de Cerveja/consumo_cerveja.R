@@ -94,6 +94,8 @@ data_test <- testing(data_split)
 data_rec <- recipe(consumo_de_cerveja_litros ~ ., data = data_train) %>%
   step_normalize(all_numeric(), -all_outcomes())
 
+juice(prep(data_rec)) # Visualizar a base de dados tratada
+
 # Model - Ridge -----------------------------------------------------------
 
 ridge_spec <- linear_reg(penalty = 0.1, mixture = 0) %>% set_engine("glmnet")

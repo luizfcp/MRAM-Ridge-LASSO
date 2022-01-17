@@ -38,7 +38,7 @@ p3 %>% ggsave(filename = "img/caminhao_quebrado.png", dpi = "retina", width = w,
 p4 <- dat %>% mutate(vehicle_excess = vehicle_excess %>% as.character()) %>% ggplot(aes(x = vehicle_excess, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Excesso de Veículos vs\n", "Lentidão no Trânsito (%)"), x = "Excesso de Veículos", y = y_name)
 p4 %>% ggsave(filename = "img/excesso_veiculos.png", dpi = "retina", width = w, height = h)
 
-p5 <- dat %>% mutate(accident_victim = accident_victim %>% as.character()) %>% ggplot(aes(x = accident_victim, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Vítimas no Acidente vs\n", "Lentidão no Trânsito (%)"), x = "Vítimas no Acidente", y = y_name)
+p5 <- dat %>% mutate(accident_victim = accident_victim %>% as.character()) %>% ggplot(aes(x = accident_victim, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Vítimas de Acidente vs\n", "Lentidão no Trânsito (%)"), x = "Vítimas de Acidente", y = y_name)
 p5 %>% ggsave(filename = "img/vitimas_acidente.png", dpi = "retina", width = w, height = h)
 
 p6 <- dat %>% mutate(running_over = running_over %>% as.character()) %>% ggplot(aes(x = running_over, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Atropelamento vs\n", "Lentidão no Trânsito (%)"), x = "Atropelamento", y = y_name)
@@ -94,8 +94,9 @@ dat_test <- testing(dat_split)
 
 # Data Prep
 dat_rec <- recipe(percentual_lentidao_trafego ~ ., data = dat_train) %>%
-  step_normalize(all_numeric(), -all_outcomes()) %>% 
-  step_dummy(all_nominal(), -all_outcomes())
+  step_normalize(all_numeric(), -all_outcomes())
+
+juice(prep(dat_rec)) # Visualizar a base de dados tratada
 
 # Model - Ridge -----------------------------------------------------------
 

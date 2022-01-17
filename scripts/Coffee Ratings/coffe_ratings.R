@@ -44,8 +44,8 @@ p5 %>% ggsave(filename = "img/aroma.png", dpi = "retina", width = w, height = h)
 p6 <- dat %>% ggplot(aes(x = flavor, y = total_cup_points)) + geom_point() + theme_minimal() + labs(title = paste("Sabor vs", "Pontuação"), x = "Sabor", y = y_name, subtitle = paste("cor:", cor(dat %>% select(flavor, total_cup_points))[2,1] %>% round(2)))
 p6 %>% ggsave(filename = "img/sabor.png", dpi = "retina", width = w, height = h)
 
-p7 <- dat %>% ggplot(aes(x = aftertaste, y = total_cup_points)) + geom_point() + theme_minimal() + labs(title = paste("Gosto Residual vs", "Pontuação"), x = "Gosto Residual", y = y_name, subtitle = paste("cor:", cor(dat %>% select(aftertaste, total_cup_points))[2,1] %>% round(2)))
-p7 %>% ggsave(filename = "img/gosto_residual.png", dpi = "retina", width = w, height = h)
+p7 <- dat %>% ggplot(aes(x = aftertaste, y = total_cup_points)) + geom_point() + theme_minimal() + labs(title = paste("Sabor Residual vs", "Pontuação"), x = "Sabor Residual", y = y_name, subtitle = paste("cor:", cor(dat %>% select(aftertaste, total_cup_points))[2,1] %>% round(2)))
+p7 %>% ggsave(filename = "img/sabor_residual.png", dpi = "retina", width = w, height = h)
 
 p8 <- dat %>% ggplot(aes(x = acidity, y = total_cup_points)) + geom_point() + theme_minimal() + labs(title = paste("Acidez vs", "Pontuação"), x = "Acidez", y = y_name, subtitle = paste("cor:", cor(dat %>% select(acidity, total_cup_points))[2,1] %>% round(2)))
 p8 %>% ggsave(filename = "img/acidez.png", dpi = "retina", width = w, height = h)
@@ -84,7 +84,7 @@ p18 %>% ggsave(filename = "img/quakers.png", dpi = "retina", width = w, height =
 
 dat %<>% select(-c(altitude_mean_meters, category_one_defects, quakers, moisture)) #category_two_defects, 
 dat %>% vis_miss()
-dat %<>% `colnames<-`(c("pontuacao", "especies", "metodo_processamento", "aroma", "sabor", "gosto_residual", "acidez", "corpo", "balanco", "uniformidade", "limpeza_copo", "docura", "cor", "categoria_defeitos_2")) %>% na.omit()
+dat %<>% `colnames<-`(c("pontuacao", "especies", "metodo_processamento", "aroma", "sabor", "sabor_residual", "acidez", "corpo", "balanco", "uniformidade", "limpeza_copo", "docura", "cor", "categoria_defeitos_2")) %>% na.omit()
 
 # Model -------------------------------------------------------------------
 
@@ -98,6 +98,8 @@ dat_test <- testing(dat_split)
 dat_rec <- recipe(pontuacao ~ ., data = dat_train) %>%
   step_normalize(all_numeric(), -all_outcomes()) %>% 
   step_dummy(all_nominal(), -all_outcomes())
+
+juice(prep(dat_rec)) # Visualizar a base de dados tratada
 
 # Model - Ridge -----------------------------------------------------------
 
