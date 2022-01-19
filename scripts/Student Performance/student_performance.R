@@ -195,7 +195,7 @@ p2_ridge <- final_ridge %>%
   theme_minimal() +
   labs(y = NULL, x = "Importância", fill = "Sinal"); p2_ridge
 
-p2_ridge %>% ggsave(filename = "img/portugues_importancia_ridge.png", dpi = "retina", width = 7, height = 3)
+p2_ridge %>% ggsave(filename = "img/portugues_importancia_ridge.png", dpi = "retina", width = 7, height = 4)
 
 # Ajusta o melhor modelo final ao conjunto de treinamento e avalia o conjunto de teste
 # https://tune.tidymodels.org/reference/last_fit.html
@@ -280,7 +280,7 @@ p2_lasso <- final_lasso %>%
   theme_minimal() +
   labs(y = NULL, x = "Importância", fill = "Sinal"); p2_lasso
 
-p2_lasso %>% ggsave(filename = "img/portugues_importancia_lasso.png", dpi = "retina", width = 7, height = 3)
+p2_lasso %>% ggsave(filename = "img/portugues_importancia_lasso.png", dpi = "retina", width = 7, height = 4)
 
 # Ajusta o melhor modelo final ao conjunto de treinamento e avalia o conjunto de teste
 # https://tune.tidymodels.org/reference/last_fit.html

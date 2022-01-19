@@ -81,7 +81,9 @@ p17 %>% ggsave(filename = "img/semaforo_intermitente.png", dpi = "retina", width
 
 dat %<>% 
   select(-c(fire_vehicles, occurrence_involving_freight, incident_involving_dangerous_freight, fire, defect_in_the_network_of_trolleybuses, intermittent_semaphore)) %>% 
-  `colnames<-`(c("id_hora", "onibus_imobilizado", "caminhao_quebrado", "excesso_veiculo", "vitimas_acidente", "atropelamento", "falta_eletricidade", "ponto_alagamento", "manifestacoes", "arvore_estrada", "semaforo_desligado", "percentual_lentidao_trafego")) %>% na.omit()
+  `colnames<-`(c("id_hora", "onibus_imobilizado", "caminhao_quebrado", "excesso_veiculo", "vitimas_acidente", "atropelamento", "falta_eletricidade", "ponto_alagamento", "manifestacoes", "arvore_estrada", "semaforo_desligado", "percentual_lentidao_trafego")) %>% 
+  na.omit() %>% 
+  mutate(id_hora = id_hora %>% as.character())
 dat %>% vis_miss()
 
 # Model -------------------------------------------------------------------
@@ -94,7 +96,8 @@ dat_test <- testing(dat_split)
 
 # Data Prep
 dat_rec <- recipe(percentual_lentidao_trafego ~ ., data = dat_train) %>%
-  step_normalize(all_numeric(), -all_outcomes())
+  step_normalize(all_numeric(), -all_outcomes()) %>% 
+  step_dummy(all_nominal(), -all_outcomes())
 
 juice(prep(dat_rec)) # Visualizar a base de dados tratada
 
@@ -166,7 +169,7 @@ p2_ridge <- final_ridge %>%
   theme_minimal() +
   labs(y = NULL, x = "Importância", fill = "Sinal"); p2_ridge
 
-p2_ridge %>% ggsave(filename = "img/trafego_importancia_ridge.png", dpi = "retina", width = 7, height = 3)
+p2_ridge %>% ggsave(filename = "img/trafego_importancia_ridge.png", dpi = "retina", width = 7, height = 4.5)
 
 # Ajusta o melhor modelo final ao conjunto de treinamento e avalia o conjunto de teste
 # https://tune.tidymodels.org/reference/last_fit.html
@@ -251,7 +254,7 @@ p2_lasso <- final_lasso %>%
   theme_minimal() +
   labs(y = NULL, x = "Importância", fill = "Sinal"); p2_lasso
 
-p2_lasso %>% ggsave(filename = "img/trafego_importancia_lasso.png", dpi = "retina", width = 7, height = 3)
+p2_lasso %>% ggsave(filename = "img/trafego_importancia_lasso.png", dpi = "retina", width = 7, height = 4.5)
 
 # Ajusta o melhor modelo final ao conjunto de treinamento e avalia o conjunto de teste
 # https://tune.tidymodels.org/reference/last_fit.html
