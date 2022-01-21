@@ -26,14 +26,14 @@ p1 <- data %>%
   ggplot(aes(x = data, y = temperatura_media_c)) + 
   geom_line() +
   labs(x = "Data", y = "Temperatura Média (°C)") +
-  theme_minimal()
+  theme_minimal(); p1
 ggsave("img/consumo_cerveja_temp_media.png", plot = p1, dpi = "retina", width = 5, height = 3)
 
 p2 <- data %>% 
   ggplot(aes(x = data, y = consumo_de_cerveja_litros)) +
   geom_line() +
   labs(x = "Data", y = "Consumo de Cerveja (litros)") +
-  theme_minimal()
+  theme_minimal(); p2
 ggsave("img/consumo_cerveja_litros.png", plot = p2, dpi = "retina", width = 5, height = 3)
 
 p3 <- data %>% 
@@ -41,7 +41,7 @@ p3 <- data %>%
   geom_point(size=2) +
   labs(x="Temperatura Média (°C)", y="Consumo de Cerveja (litros)") +
   theme_minimal() +
-  theme(plot.title=element_text(hjust=0.5))
+  theme(plot.title=element_text(hjust=0.5)); p3
 ggsave("img/consumo_cerveja_pontos.png", plot = p3, dpi = "retina", width = 5, height = 3)
 
 # Model -------------------------------------------------------------------

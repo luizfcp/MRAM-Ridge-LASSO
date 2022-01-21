@@ -76,7 +76,7 @@ p15 %>% ggsave(filename = "img/desej_superior.png", dpi = "retina", width = w, h
 p16 <- dat %>% mutate(internet  = ifelse(internet =="yes", "Sim", "Não")) %>% ggplot(aes(x = internet , y = g3)) + geom_boxplot() + theme_minimal() + labs(title = paste("Acesso a Internet em casa vs", " G3"), x = "Acesso a Internet em casa", y = y_name)
 p16 %>% ggsave(filename = "img/acesso_internet.png", dpi = "retina", width = w, height = h)
 
-p17 <- dat %>% mutate(freetime = freetime %>% as.character()) %>% ggplot(aes(x = freetime , y = g3)) + geom_boxplot() + theme_minimal() + labs(title = paste("Tempo Livre vs", " G3"), x = "Tempo Livre", y = y_name)
+p17 <- dat %>% mutate(freetime = freetime %>% as.character()) %>% ggplot(aes(x = freetime , y = g3)) + geom_boxplot() + theme_minimal() + labs(title = paste("Tempo Livre Pós Escola vs", " G3"), x = "Tempo Livre Pós Escola", y = y_name)
 p17 %>% ggsave(filename = "img/tempo_livre.png", dpi = "retina", width = w, height = h)
 
 p18 <- dat %>% mutate(health = health %>% as.character()) %>% ggplot(aes(x = health , y = g3)) + geom_boxplot() + theme_minimal() + labs(title = paste("Estado de saúde atual vs", " G3"), x = "Estado de saúde atual", y = y_name)
