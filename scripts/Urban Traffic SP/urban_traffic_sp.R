@@ -16,7 +16,9 @@ library(tidytuesdayR)
 
 # Data --------------------------------------------------------------------
 
-dat <- read_csv2("data/Behavior of the urban traffic of the city of Sao Paulo in Brazil.csv") %>% clean_names() %>% as_tibble()
+# https://archive.ics.uci.edu/ml/datasets/Behavior+of+the+urban+traffic+of+the+city+of+Sao+Paulo+in+Brazil
+
+dat <- read_csv2("data/Behavior of the urban traffic of the city of Sao Paulo in Brazil.csv") %>% clean_names() %>% as_tibble() %>% select(-c(incident_involving_dangerous_freight, defect_in_the_network_of_trolleybuses))
 dat %>% vis_miss()
 dat %<>% na.omit()
 
@@ -50,41 +52,37 @@ p7 %>% ggsave(filename = "img/veiculos_fogo.png", dpi = "retina", width = w, hei
 p8 <- dat %>% mutate(occurrence_involving_freight = occurrence_involving_freight %>% as.character()) %>% ggplot(aes(x = occurrence_involving_freight, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Ocorrência envolvendo carga vs\n", "Lentidão no Trânsito (%)"), x = "Ocorrência envolvendo carga", y = y_name)
 p8 %>% ggsave(filename = "img/ocorrencia_carga.png", dpi = "retina", width = w, height = h)
 
-p9 <- dat %>% mutate(incident_involving_dangerous_freight = incident_involving_dangerous_freight %>% as.character()) %>% ggplot(aes(x = incident_involving_dangerous_freight, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Incidente envolvendo carga perigosa vs\n", "Lentidão no Trânsito (%)"), x = "Incidente envolvendo carga perigosa", y = y_name)
-p9 %>% ggsave(filename = "img/carga_perigosa.png", dpi = "retina", width = w, height = h)
+p9 <- dat %>% mutate(lack_of_electricity = lack_of_electricity %>% as.character()) %>% ggplot(aes(x = lack_of_electricity, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Falta de eletricidade vs\n", "Lentidão no Trânsito (%)"), x = "Falta de eletricidade", y = y_name)
+p9 %>% ggsave(filename = "img/falta_eletricidade.png", dpi = "retina", width = w, height = h)
 
-p10 <- dat %>% mutate(lack_of_electricity = lack_of_electricity %>% as.character()) %>% ggplot(aes(x = lack_of_electricity, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Falta de eletricidade vs\n", "Lentidão no Trânsito (%)"), x = "Falta de eletricidade", y = y_name)
-p10 %>% ggsave(filename = "img/falta_eletricidade.png", dpi = "retina", width = w, height = h)
+p10 <- dat %>% mutate(fire = fire %>% as.character()) %>% ggplot(aes(x = fire, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Incêndio vs\n", "Lentidão no Trânsito (%)"), x = "Incêndio", y = y_name)
+p10 %>% ggsave(filename = "img/incendio.png", dpi = "retina", width = w, height = h)
 
-p11 <- dat %>% mutate(fire = fire %>% as.character()) %>% ggplot(aes(x = fire, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Incêndio vs\n", "Lentidão no Trânsito (%)"), x = "Incêndio", y = y_name)
-p11 %>% ggsave(filename = "img/incendio.png", dpi = "retina", width = w, height = h)
+p11 <- dat %>% mutate(point_of_flooding = point_of_flooding %>% as.character()) %>% ggplot(aes(x = point_of_flooding, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Ponto de alagamento vs\n", "Lentidão no Trânsito (%)"), x = "Ponto de alagamento", y = y_name)
+p11 %>% ggsave(filename = "img/ponto_alagamento.png", dpi = "retina", width = w, height = h)
 
-p12 <- dat %>% mutate(point_of_flooding = point_of_flooding %>% as.character()) %>% ggplot(aes(x = point_of_flooding, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Ponto de alagamento vs\n", "Lentidão no Trânsito (%)"), x = "Ponto de alagamento", y = y_name)
-p12 %>% ggsave(filename = "img/ponto_alagamento.png", dpi = "retina", width = w, height = h)
+p12 <- dat %>% mutate(manifestations = manifestations %>% as.character()) %>% ggplot(aes(x = manifestations, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Manifestação vs\n", "Lentidão no Trânsito (%)"), x = "Manifestação", y = y_name)
+p12 %>% ggsave(filename = "img/manifestacao.png", dpi = "retina", width = w, height = h)
 
-p13 <- dat %>% mutate(manifestations = manifestations %>% as.character()) %>% ggplot(aes(x = manifestations, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Manifestação vs\n", "Lentidão no Trânsito (%)"), x = "Manifestação", y = y_name)
-p13 %>% ggsave(filename = "img/manifestacao.png", dpi = "retina", width = w, height = h)
+p13 <- dat %>% mutate(tree_on_the_road = tree_on_the_road %>% as.character()) %>% ggplot(aes(x = tree_on_the_road, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Árvore na estrada vs\n", "Lentidão no Trânsito (%)"), x = "Árvore na estrada", y = y_name)
+p13 %>% ggsave(filename = "img/arvore.png", dpi = "retina", width = w, height = h)
 
-p14 <- dat %>% mutate(defect_in_the_network_of_trolleybuses = defect_in_the_network_of_trolleybuses %>% as.character()) %>% ggplot(aes(x = defect_in_the_network_of_trolleybuses, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Defeito na rede vs\n", "Lentidão no Trânsito (%)"), x = "Defeito na rede", y = y_name)
-p14 %>% ggsave(filename = "img/defeito_rede.png", dpi = "retina", width = w, height = h)
+p14 <- dat %>% mutate(semaphore_off = semaphore_off %>% as.character()) %>% ggplot(aes(x = semaphore_off, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Semáforo desligado vs\n", "Lentidão no Trânsito (%)"), x = "Semáforo desligado", y = y_name)
+p14 %>% ggsave(filename = "img/semaforo_off.png", dpi = "retina", width = w, height = h)
 
-p15 <- dat %>% mutate(tree_on_the_road = tree_on_the_road %>% as.character()) %>% ggplot(aes(x = tree_on_the_road, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Árvore na estrada vs\n", "Lentidão no Trânsito (%)"), x = "Árvore na estrada", y = y_name)
-p15 %>% ggsave(filename = "img/arvore.png", dpi = "retina", width = w, height = h)
-
-p16 <- dat %>% mutate(semaphore_off = semaphore_off %>% as.character()) %>% ggplot(aes(x = semaphore_off, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Semáforo desligado vs\n", "Lentidão no Trânsito (%)"), x = "Semáforo desligado", y = y_name)
-p16 %>% ggsave(filename = "img/semaforo_off.png", dpi = "retina", width = w, height = h)
-
-p17 <- dat %>% mutate(intermittent_semaphore = intermittent_semaphore %>% as.character()) %>% ggplot(aes(x = intermittent_semaphore, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Semáforo intermitente vs\n", "Lentidão no Trânsito (%)"), x = "Semáforo intermitente", y = y_name)
-p17 %>% ggsave(filename = "img/semaforo_intermitente.png", dpi = "retina", width = w, height = h)
+p15 <- dat %>% mutate(intermittent_semaphore = intermittent_semaphore %>% as.character()) %>% ggplot(aes(x = intermittent_semaphore, y = slowness_in_traffic_percent)) + geom_boxplot() + theme_minimal() + labs(title = paste("Semáforo intermitente vs\n", "Lentidão no Trânsito (%)"), x = "Semáforo intermitente", y = y_name)
+p15 %>% ggsave(filename = "img/semaforo_intermitente.png", dpi = "retina", width = w, height = h)
 
 # Data --------------------------------------------------------------------
 
+nzv <- dat %>% select(-slowness_in_traffic_percent) %>% caret::nearZeroVar()
+dat %>% .[,{nzv}]
+dat %<>% .[,-{nzv}]
+
 dat %<>% 
-  select(-c(fire_vehicles, occurrence_involving_freight, incident_involving_dangerous_freight, fire, defect_in_the_network_of_trolleybuses, intermittent_semaphore)) %>% 
-  `colnames<-`(c("id_hora", "onibus_imobilizado", "caminhao_quebrado", "excesso_veiculo", "vitimas_acidente", "atropelamento", "falta_eletricidade", "ponto_alagamento", "manifestacoes", "arvore_estrada", "semaforo_desligado", "percentual_lentidao_trafego")) %>% 
+  `colnames<-`(c("id_hora", "onibus_imobilizado", "caminhao_quebrado", "vitimas_acidente", "atropelamento", "falta_eletricidade", "manifestacoes", "semaforo_desligado", "percentual_lentidao_trafego")) %>% 
   na.omit() %>% 
   mutate(id_hora = id_hora %>% as.character())
-dat %>% vis_miss()
 
 # Model -------------------------------------------------------------------
 
@@ -100,6 +98,22 @@ dat_rec <- recipe(percentual_lentidao_trafego ~ ., data = dat_train) %>%
   step_dummy(all_nominal(), -all_outcomes())
 
 juice(prep(dat_rec)) # Visualizar a base de dados tratada
+
+# Model - LM --------------------------------------------------------------
+
+lm_spec <- linear_reg() %>% set_engine("lm")
+
+lm_fit <- lm_spec %>% fit(percentual_lentidao_trafego ~ ., data = dat_train)
+
+lm <- lm_fit %>%
+  predict(new_data = dat_test) %>%
+  mutate(
+    truth = dat_test$percentual_lentidao_trafego,
+    model = "lm"
+  )
+
+lm %>% rmse(truth = truth, estimate = .pred)
+lm %>% rsq(truth = truth, estimate = .pred)
 
 # Model - Ridge -----------------------------------------------------------
 

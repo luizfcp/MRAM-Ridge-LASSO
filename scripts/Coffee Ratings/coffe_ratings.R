@@ -16,6 +16,8 @@ library(tidytuesdayR)
 
 # Data --------------------------------------------------------------------
 
+# https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-07-07
+
 dat <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-07/coffee_ratings.csv') %>% 
   mutate(color = ifelse(color=="None", NA, color)) %>% 
   select(-c(owner, farm_name:altitude, producer:variety, expiration:altitude_high_meters, country_of_origin, region, cupper_points))
@@ -82,9 +84,11 @@ p18 %>% ggsave(filename = "img/quakers.png", dpi = "retina", width = w, height =
 
 # Data --------------------------------------------------------------------
 
-dat %<>% select(-c(altitude_mean_meters, category_one_defects, quakers, moisture)) #category_two_defects, 
-dat %>% vis_miss()
-dat %<>% `colnames<-`(c("pontuacao", "especies", "metodo_processamento", "aroma", "sabor", "sabor_residual", "acidez", "corpo", "balanco", "uniformidade", "limpeza_copo", "docura", "cor", "categoria_defeitos_2")) %>% na.omit()
+#nzv <- dat %>% select(-total_cup_points) %>% caret::nearZeroVar()
+#dat %<>% .[,-{nzv+1}]
+
+dat %<>% select(-altitude_mean_meters) %>% na.omit()
+dat %<>% `colnames<-`(c("pontuacao", "especies", "metodo_processamento", "aroma", "sabor", "sabor_residual", "acidez", "corpo", "balanco", "limpeza_copo", "docura", "uniformidade", "umidade", "categoria_defeitos_1", "quakers", "cor", "categoria_defeitos_2"))
 
 # Model -------------------------------------------------------------------
 
@@ -100,6 +104,22 @@ dat_rec <- recipe(pontuacao ~ ., data = dat_train) %>%
   step_dummy(all_nominal(), -all_outcomes())
 
 juice(prep(dat_rec)) # Visualizar a base de dados tratada
+
+# Model - LM --------------------------------------------------------------
+
+lm_spec <- linear_reg() %>% set_engine("lm")
+
+lm_fit <- lm_spec %>% fit(pontuacao ~ ., data = dat_train)
+
+lm <- lm_fit %>%
+  predict(new_data = dat_test) %>%
+  mutate(
+    truth = dat_test$pontuacao,
+    model = "lm"
+  )
+
+lm %>% rmse(truth = truth, estimate = .pred)
+lm %>% rsq(truth = truth, estimate = .pred)
 
 # Model - Ridge -----------------------------------------------------------
 
