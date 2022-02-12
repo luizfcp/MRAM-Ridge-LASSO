@@ -184,5 +184,5 @@ lasso %>%
 # Imagem Ride - LASSO -----------------------------------------------------
 
 {p1_cc_ridge + p1_cc_lasso}
-{p1_cc_ridge + p1_cc_lasso} %>% ggsave(filename = "img/cc_r2_rmse_lasso_ridge.png", dpi = "retina", width = 7, height = 5)
+{p1_cc_ridge + p1_cc_lasso} %>% ggsave(filename = "img/cc_r2_rmse_lasso_ridge.png", dpi = "retina", width = 7, height = 4)
 
