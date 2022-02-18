@@ -84,6 +84,7 @@ p18 %>% ggsave(filename = "img/quakers.png", dpi = "retina", width = w, height =
 
 # Data --------------------------------------------------------------------
 
+## Piora a qualidade do ajuste
 #nzv <- dat %>% select(-total_cup_points) %>% caret::nearZeroVar()
 #dat %<>% .[,-{nzv+1}]
 
